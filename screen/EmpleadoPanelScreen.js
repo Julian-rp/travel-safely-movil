@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function AdminPanelScreen({ navigation }) {
+export default function EmpleadoPanelScreen({ navigation }) {
   const handleLogout = () => {
     navigation.navigate("Login");
   };
@@ -16,23 +16,15 @@ export default function AdminPanelScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.title}>Panel de Administrador</Text>
+      <Text style={styles.title}>Panel de Empleado</Text>
       <Text style={styles.subtitle}>Bienvenido a Travel Safely 🚐</Text>
 
       <ScrollView style={styles.menuContainer}>
         <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="people-outline" size={30} color="#3b82f6" />
-          <View style={styles.menuTextContainer}>
-            <Text style={styles.menuTitle}>Gestionar Empleados</Text>
-            <Text style={styles.menuSubtitle}>Ver, agregar y editar empleados</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.menuItem}>
           <Ionicons name="bus-outline" size={30} color="#3b82f6" />
           <View style={styles.menuTextContainer}>
-            <Text style={styles.menuTitle}>Gestionar Viajes</Text>
-            <Text style={styles.menuSubtitle}>Administrar rutas y viajes</Text>
+            <Text style={styles.menuTitle}>Mis Viajes</Text>
+            <Text style={styles.menuSubtitle}>Ver viajes asignados</Text>
           </View>
         </TouchableOpacity>
 
@@ -40,23 +32,23 @@ export default function AdminPanelScreen({ navigation }) {
           <Ionicons name="calendar-outline" size={30} color="#3b82f6" />
           <View style={styles.menuTextContainer}>
             <Text style={styles.menuTitle}>Horarios</Text>
-            <Text style={styles.menuSubtitle}>Configurar horarios de viajes</Text>
+            <Text style={styles.menuSubtitle}>Consultar horarios</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="bar-chart-outline" size={30} color="#3b82f6" />
+          <Ionicons name="document-text-outline" size={30} color="#3b82f6" />
           <View style={styles.menuTextContainer}>
-            <Text style={styles.menuTitle}>Reportes y Estadísticas</Text>
-            <Text style={styles.menuSubtitle}>Ver análisis del sistema</Text>
+            <Text style={styles.menuTitle}>Reportes</Text>
+            <Text style={styles.menuSubtitle}>Enviar reportes de viaje</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="settings-outline" size={30} color="#3b82f6" />
+          <Ionicons name="person-outline" size={30} color="#3b82f6" />
           <View style={styles.menuTextContainer}>
-            <Text style={styles.menuTitle}>Configuración</Text>
-            <Text style={styles.menuSubtitle}>Ajustes del sistema</Text>
+            <Text style={styles.menuTitle}>Mi Perfil</Text>
+            <Text style={styles.menuSubtitle}>Ver y editar perfil</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>

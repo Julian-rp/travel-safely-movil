@@ -19,8 +19,8 @@ export default function LoginScreen({ navigation }) {
     if (foundUser) {
       if (foundUser.role === 'admin') {
         navigation.navigate('AdminPanel');
-      } else {
-        Alert.alert('Acceso Denegado', 'Solo el administrador puede acceder al panel.');
+      } else if (foundUser.role === 'empleado') {
+        navigation.navigate('EmpleadoPanel');
       }
     } else {
       Alert.alert('Error', 'Correo o contraseña incorrectos.');
@@ -38,6 +38,8 @@ export default function LoginScreen({ navigation }) {
         placeholderTextColor="#888"
         onChangeText={setEmail}
         value={email}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
 
       <TextInput
@@ -56,10 +58,10 @@ export default function LoginScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
       </TouchableOpacity>
+      
       <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-  <Text style={styles.registerLink}>¿Eres nuevo? Regístrate aquí</Text>
-</TouchableOpacity>
-
+        <Text style={styles.registerLink}>¿Eres nuevo? Regístrate aquí</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -115,8 +117,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   registerLink: {
-  color: "#aaa",
-  textAlign: "center",
-  marginTop: 20,
-},
+    color: "#aaa",
+    textAlign: "center",
+    marginTop: 20,
+  },
 });
