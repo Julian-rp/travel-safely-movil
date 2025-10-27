@@ -56,6 +56,10 @@ export default function LoginScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+  <Text style={styles.registerLink}>¿Eres nuevo? Regístrate aquí</Text>
+</TouchableOpacity>
+
     </View>
   );
 }
@@ -63,19 +67,19 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0f0e0eff',
     padding: 30,
     justifyContent: 'center',
   },
   logo: {
-    color: '#007BFF',
+    color: '#ffffffff',
     fontSize: 42,
     textAlign: 'center',
     marginBottom: 10,
     fontWeight: 'bold',
   },
   title: {
-    color: '#1E1E1E',
+    color: '#ffffffff',
     fontSize: 22,
     textAlign: 'center',
     marginBottom: 25,
@@ -110,4 +114,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
   },
+  registerLink: {
+  color: "#aaa",
+  textAlign: "center",
+  marginTop: 20,
+},
 });
