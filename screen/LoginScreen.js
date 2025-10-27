@@ -1,52 +1,113 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TextInput, Text } from 'react-native-paper';
-import CustomButton from '../components/CustomButton';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // 🔹 Base de datos simple (local)
+  const users = [
+    { email: 'admin@travel.com', password: '12345', role: 'admin' },
+    { email: 'empleado@travel.com', password: 'abcde', role: 'empleado' },
+  ];
+
   const handleLogin = () => {
-    if (email === "admin@demo.com" && password === "123456") {
-      navigation.navigate('AdminPanel');
+    const foundUser = users.find(
+      user => user.email === email.trim() && user.password === password.trim()
+    );
+
+    if (foundUser) {
+      if (foundUser.role === 'admin') {
+        navigation.navigate('AdminPanel');
+      } else {
+        Alert.alert('Acceso Denegado', 'Solo el administrador puede acceder al panel.');
+      }
     } else {
-      alert('Credenciales incorrectas. Usa admin@demo.com / 123456');
+      Alert.alert('Error', 'Correo o contraseña incorrectos.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text variant="headlineMedium" style={styles.title}>Inicio de Sesión</Text>
+      <Text style={styles.logo}>MJV</Text>
+      <Text style={styles.title}>Iniciar Sesión</Text>
 
       <TextInput
-        label="Correo electrónico"
-        value={email}
+        style={styles.input}
+        placeholder="Correo electrónico"
+        placeholderTextColor="#888"
         onChangeText={setEmail}
-        style={styles.input}
-        keyboardType="email-address"
+        value={email}
       />
 
       <TextInput
-        label="Contraseña"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
         style={styles.input}
+        placeholder="Contraseña"
+        placeholderTextColor="#888"
+        secureTextEntry
+        onChangeText={setPassword}
+        value={password}
       />
 
-      <CustomButton title="Ingresar" onPress={handleLogin} />
-      <CustomButton title="Registrarse" mode="outlined" onPress={() => navigation.navigate('Register')} />
-      <Text style={styles.link} onPress={() => navigation.navigate('ForgotPassword')}>
-        ¿Olvidaste tu contraseña?
-      </Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Iniciar Sesión</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { textAlign: 'center', marginBottom: 20 },
-  input: { marginVertical: 5 },
-  link: { textAlign: 'center', color: '#007bff', marginTop: 15 },
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    padding: 30,
+    justifyContent: 'center',
+  },
+  logo: {
+    color: '#007BFF',
+    fontSize: 42,
+    textAlign: 'center',
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
+  title: {
+    color: '#1E1E1E',
+    fontSize: 22,
+    textAlign: 'center',
+    marginBottom: 25,
+  },
+  input: {
+    backgroundColor: '#F4F4F4',
+    borderColor: '#CCC',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 12,
+    fontSize: 16,
+    color: '#1E1E1E',
+  },
+  button: {
+    backgroundColor: '#007BFF',
+    padding: 15,
+    borderRadius: 12,
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+  },
+  buttonText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  link: {
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 15,
+  },
 });

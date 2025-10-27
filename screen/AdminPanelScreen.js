@@ -1,30 +1,30 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { Text, Card } from 'react-native-paper';
-import CustomButton from '../components/CustomButton';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export default function AdminPanelScreen({ navigation }) {
+export default function AdminPanelScreen() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text variant="headlineMedium" style={styles.title}>Panel de Administración</Text>
-
-      <Card style={styles.card}>
-        <Card.Title title="Gestión de Usuarios" />
-        <Card.Content><Text>Ver, editar y eliminar usuarios registrados.</Text></Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Title title="Reportes" />
-        <Card.Content><Text>Visualiza estadísticas del sistema Travel Safely.</Text></Card.Content>
-      </Card>
-
-      <CustomButton title="Cerrar Sesión" onPress={() => navigation.navigate('Login')} />
-    </ScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Panel de Administrador</Text>
+      <Text style={styles.subtitle}>Bienvenido a Travel Safely 🚐</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, justifyContent: 'center', padding: 20 },
-  title: { textAlign: 'center', marginBottom: 20 },
-  card: { marginVertical: 10, borderRadius: 10 },
+  container: {
+    flex: 1,
+    backgroundColor: "#121212",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    color: "#fff",
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    color: "#aaa",
+    marginTop: 10,
+    fontSize: 16,
+  },
 });
